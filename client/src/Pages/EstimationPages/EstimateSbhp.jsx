@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Cards } from '../../Components/Cards/Cards';
 
 export const EstimateSbhp = () => {
+  const navigate = useNavigate();
   const [estimate, setEstimation] = useState({});
   const [formData, setFormData] = useState({
     well_depth: '',
@@ -11,7 +12,6 @@ export const EstimateSbhp = () => {
     static_wellhead_pressure: '',
   });
 
-  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +39,7 @@ export const EstimateSbhp = () => {
       .then(data => {
         console.log(data);
         setEstimation(data);
-        history.push('/results')
+        navigate('/results');
       })
       .catch(error => console.log("Error fetching data:", error));
   };

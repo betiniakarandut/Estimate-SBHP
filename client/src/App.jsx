@@ -1,5 +1,5 @@
 import react, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { EstimateSbhp } from './Pages/EstimationPages/EstimateSbhp';
 import { Results } from './Pages/EstimationPages/Results';
 import './App.css'
@@ -12,12 +12,12 @@ function App() {
     <>
       <div>
         <Router>
-          <Switch>
-            <Route path='/results' component={Results}/>
-            <Route path='/' component={EstimateSbhp}/>
-          </Switch>
+          <Routes>
+            <Route path='/' element={<EstimateSbhp />}/>
+            <Route path='/results' element={<Results />}/>
+          </Routes>
         </Router>
-        <EstimateSbhp/>
+        {/* <EstimateSbhp/> */}
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
