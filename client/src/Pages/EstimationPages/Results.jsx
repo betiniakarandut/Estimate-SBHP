@@ -1,7 +1,11 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-export const Results = ({ location }) => {
-  const { estimate } = location.state || {}
+export const Results = () => {
+  const location = useLocation();
+  console.log('This is the entire location object:', location);
+  const { estimate } = location?.state || {}
+  console.log('This is estimate from Results:',estimate)
 
   return (
     <div>

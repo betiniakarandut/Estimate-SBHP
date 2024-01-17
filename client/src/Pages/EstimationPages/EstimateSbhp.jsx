@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './EstimateSBHP.css';
 import { Cards } from '../../Components/Cards/Cards';
 
 export const EstimateSbhp = () => {
@@ -19,7 +20,7 @@ export const EstimateSbhp = () => {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleEstimate = (e) => {
     e.preventDefault();
 
     fetch("http://localhost:5000/api/calculate_properties", {
@@ -39,37 +40,71 @@ export const EstimateSbhp = () => {
       .then(data => {
         console.log(data);
         setEstimation(data);
-        navigate('/results');
+        console.log('this is the required data:', data)
+        navigate('/results', {state: { estimate: data }});
       })
       .catch(error => console.log("Error fetching data:", error));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Well Depth:
-          <input required type="text" name="well_depth" value={formData.well_depth} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Temp Avg Sys:
-          <input required type="text" name="temp_avg_sys" value={formData.temp_avg_sys} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Gas Specific Gravity:
-          <input required type="text" name="gas_specific_gravity" value={formData.gas_specific_gravity} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Static Wellhead Pressure:
-          <input required type="text" name="static_wellhead_pressure" value={formData.static_wellhead_pressure} onChange={handleChange} />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <Cards />
+    <div >
+      <p className='f3 bg-light-red br2'>
+				{'Please note that this model works for pressures below 10,000 psia. Give it a try!'}
+			</p>
+      <div className='form pa1 ba br4 bw2'>
+        <form onSubmit={handleEstimate}>
+          <label className='well-depth db mv2 mr-2 ml-auto'>
+            <span className='b mr3 ok'>Well Depth:</span>
+            <input 
+              className="input-reset ba bw2 f50 b--black-50 br2 h2 center glow-on-hover f3 fw-bold " 
+              required 
+              type="text" 
+              name="well_depth" 
+              value={formData.well_depth} 
+              onChange={handleChange} 
+            />
+          </label>
+          <br />
+          <label className='temp db mv2'>
+            <span className='b mr3 ok'>Avg System Temp:</span>
+            <input 
+              className="input-reset bw2 ba b--black-50 br2 h2 glow-on-hover f3 fw-bold"  
+              required 
+              type="text" 
+              name="temp_avg_sys" 
+              value={formData.temp_avg_sys} 
+              onChange={handleChange} 
+            />
+          </label>
+          <br />
+          <label className='spg db mv2'>
+            <span className='b mr3 ok'>Gas Specific Gravity:</span>
+            <input 
+              className="input-reset ba bw2 b--black-50 br2 h2 glow-on-hover f3 fw-bold" 
+              required 
+              type="text" 
+              name="gas_specific_gravity" 
+              value={formData.gas_specific_gravity} 
+              onChange={handleChange} 
+            />
+          </label>
+          <br />
+          <label className='wellhead db mv2'>
+            <span className='b mr3 ok'>Static Wellhead Pressure:</span>
+            <input 
+              className="input-reset ba bw2 b--black-50 br2 h2 glow-on-hover f3 fw-bold" 
+              required 
+              type="text" 
+              name="static_wellhead_pressure" 
+              value={formData.static_wellhead_pressure} 
+              onChange={handleChange} />
+          </label>
+          <br />
+          <button className='btn br3 f4 grow link bg-light-purple shadow-5' type="submit">Estimate</button>
+        </form>
+      </div>
+      
+      {/* <Cards /> */}
     </div>
   );
 };
