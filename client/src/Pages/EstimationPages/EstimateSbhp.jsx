@@ -12,6 +12,7 @@ export const EstimateSbhp = () => {
     gas_specific_gravity: '',
     static_wellhead_pressure: '',
   });
+  
 
 
   const handleChange = (e) => {
