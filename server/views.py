@@ -53,5 +53,6 @@ def calculate_properties_api():
     except Exception as e:
         return jsonify({"error": f"Ensure that all input fields are satisfied and are within the given range - {e}"})
 
+
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
