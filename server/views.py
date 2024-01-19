@@ -1,5 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_cors import CORS
+from flask_bcrypt import Bcrypt
+from flask_session import Session
+from config import ApplicationConfig
+from models import db, User
 from physical_properties.conversions import evaluate_scrhs
 from physical_properties.staticbhp import StaticBHP
 from physical_properties.pseudoreduced_properties import pseudo_reduced_temp, pseudo_reduced_wellhead_pressure
@@ -7,6 +11,61 @@ from physical_properties.pseudocritical_properties import natural_gas_systems, n
 
 app = Flask(__name__)
 CORS(app)
+
+app.config.from_object(ApplicationConfig)
+db.init_app(app)
+
+bcrypt = Bcrypt(app)
+
+# server_session = Session(app)
+
+with app.app_context():
+    db.create_all()
+
+@app.route("/api/register", methods=["POST"])
+def register():
+    
+    email = request.json["email"]
+    password = request.json["password"]
+
+    user_exist = db.session.query(User).filter_by(email=email).first() is not None
+
+    if user_exist:
+        return "Error: User already exist", 409
+    
+    hashed_password =  bcrypt.generate_password_hash(password)
+
+    new_user = User(email=email, password=hashed_password)
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({
+        "id": new_user.id,
+        "email": new_user.email
+    })
+
+
+@app.route("/api/login", methods=["POST"])
+def login():
+    email = request.json["email"]
+    password = request.json["password"]
+
+    user = db.session.query(User).filter_by(email=email).first()
+
+    if user is None:
+        return jsonify ({"Error": "user is unauthorized"}), 401
+
+    if not bcrypt.check_password_hash(user.password, password):
+        return jsonify ({"Error": "user is unauthorized"}), 401
+    
+    session["user_id"] = user.id
+
+    return jsonify({
+        "id": user.id,
+        "email": user.email
+    })
+
 
 
 @app.route("/api/calculate_properties", methods=["POST", "GET"])
@@ -55,4 +114,4 @@ def calculate_properties_api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True)
