@@ -7,7 +7,7 @@ import redis
 load_dotenv()
 
 class ApplicationConfig:
-    password = "@Betini2024"
+    password = os.getenv("DB_PASSWORD")
     encoded_password = quote(password)
 
     SQLALCHEMY_TRACK_MODIFICATION = False
