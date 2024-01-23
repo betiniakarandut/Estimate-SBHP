@@ -13,20 +13,20 @@ app = Flask(__name__)
 CORS(app)
 
 app.config.from_object(ApplicationConfig)
-db.init_app(app)
-
 bcrypt = Bcrypt(app)
-
 # server_session = Session(app)
+db.init_app(app)
 
 with app.app_context():
     db.create_all()
 
 @app.route("/api/register", methods=["POST"])
 def register():
+
+    data = request.get_json()
     
-    email = request.json["email"]
-    password = request.json["password"]
+    email = data["email"]
+    password = data["password"]
 
     user_exist = db.session.query(User).filter_by(email=email).first() is not None
 
@@ -46,18 +46,19 @@ def register():
     })
 
 
-@app.route("/api/login", methods=["POST"])
+@app.route("/api/login", methods=["POST", "GET"])
 def login():
-    email = request.json["email"]
-    password = request.json["password"]
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
 
-    user = db.session.query(User).filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
 
     if user is None:
-        return jsonify ({"Error": "user is unauthorized"}), 401
+        return jsonify({"Error": "Unauthorized"}), 401
 
     if not bcrypt.check_password_hash(user.password, password):
-        return jsonify ({"Error": "user is unauthorized"}), 401
+        return jsonify({"Error": "Unauthorized"}), 401
     
     session["user_id"] = user.id
 
