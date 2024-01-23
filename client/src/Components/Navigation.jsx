@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export const Navigation = ({ onRouteChange, isloggedIn }) => {
+  const navigate = useNavigate()
   const handleSignOut = () => {
+    navigate('/');
     onRouteChange('logout');
   };
 
