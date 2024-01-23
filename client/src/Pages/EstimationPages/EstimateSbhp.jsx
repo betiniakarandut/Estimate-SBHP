@@ -99,8 +99,6 @@ export const EstimateSbhp = () => {
           <button className='btn br3 f4 grow link bg-light-purple shadow-5' type="submit">Estimate</button>
         </form>
       </div>
-      
-      {/* <Cards /> */}
     </div>
   );
 };
