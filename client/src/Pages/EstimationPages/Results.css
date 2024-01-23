@@ -19,7 +19,14 @@
     font-size: xx-large;
 }
 
+.ki {
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+}
+
 .k {
+    text-align: center;
     font-weight: bold;
     font-size: 20px;
 }

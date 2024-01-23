@@ -1,79 +1,69 @@
-import react from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Particles from 'react-tsparticles';
 import { EstimateSbhp } from './Pages/EstimationPages/EstimateSbhp';
 import { Results } from './Pages/EstimationPages/Results';
-import Particles from "react-tsparticles";
-import './App.css'
+import { Login } from './Pages/LoginUser/Login';
+import { Register } from './Pages/RegisterUser/Register';
+import { Navigation } from './Components/Navigation';
 
-
-const particleParams = {
-  fpsLimit: 60,
-  particles: {
-      color: {
-        value: "#1DA9D1"
-      },
-      number: {
-        density: {
-          enable: true,
-          value_area: 900
-        },
-        value: 200
-      },
-      opacity: {
-        value: 1,
-        random: false,
-        anim: {
-          enable: true,
-          speed: 3,
-          opacity_min: 0.5
-        }
-      },
-      shape: {
-        type: "star",
-        color: "#000000"
-      },
-      size: {
-        random: true,
-        value: 30,
-        anim: {
-          enable: true,
-          speed: 10,
-          sync: false
-        }
-      },
-      move: {
-        enable: true,
-        speed: 1,
-        direction: "none",
-        attract: {
-          enable: false,
-          rotateX: 800,
-          rotateY: 1200
-        }
-      }
-    },
-    retina_detect: true
+const initialState = {
+  user: {
+    id: '',
+    email: '',
+  },
+  route: 'signin',
+  isloggedIn: false,
 };
-      
 
-function App() {
+const App = () => {
+  const [state, setState] = useState(initialState);
+
+  const loadUser = (data) => {
+    setState((prevState) => ({
+      ...prevState,
+      user: {
+        id: data.id,
+        email: data.email,
+      },
+      isloggedIn: true,
+    }));
+  };
+
+  const onRouteChange = (route) => {
+    if (route === 'logout') {
+      setState(initialState);
+    } else if (route === 'home') {
+      setState((prevState) => ({ ...prevState, isloggedIn: true }));
+    }
+    setState((prevState) => ({ ...prevState, route: route }));
+  };
+
+  const { route, isloggedIn } = state;
 
   return (
-    <>
-      <div className='App'>
-        <Particles 
-          className='particles'
-          params={particleParams}
-        />
-        <Router>
-          <Routes>
-            <Route path='/' element={<EstimateSbhp />}/>
-            <Route path='/results' element={<Results />}/>
-          </Routes>
-        </Router>
-      </div>
-    </>
-  )
-}
+    <div className="App">
+      <Router>
+        <Navigation isloggedIn={isloggedIn} onRouteChange={onRouteChange} />
+        <Routes>
+          <Route
+            path="/"
+            element={<Navigate to={isloggedIn ? '/home' : '/login'} />} // Redirect to '/home' if logged in
+          />
+          <Route
+            path="/login"
+            element={<Login loadUser={loadUser} onRouteChange={() => onRouteChange('home')} />}
+          />
+          <Route
+            path="/register"
+            element={<Register loadUser={loadUser} onRouteChange={() => onRouteChange('home')} />}
+          />
+          <Route path="/home" element={<EstimateSbhp />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
 
-export default App
+export default App;

@@ -1,58 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './EstimateSBHP.css';
-import { Cards } from '../../Components/Cards/Cards';
 
 export const EstimateSbhp = () => {
   const navigate = useNavigate();
-  const [estimate, setEstimation] = useState({});
   const [formData, setFormData] = useState({
     well_depth: '',
     temp_avg_sys: '',
     gas_specific_gravity: '',
     static_wellhead_pressure: '',
   });
-  
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log({name : value})
-    setFormData(prevState => ({ ...prevState, [name]: value }));
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleEstimate = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/calculate_properties", {
-      method: "POST",
+    fetch('http://localhost:5000/api/calculate_properties', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          console.log("No data received");
+          console.log('No data received');
         }
       })
-      .then(data => {
+      .then((data) => {
         console.log(data);
-        setEstimation(data);
-        console.log('this is the required data:', data)
-        navigate('/results', {state: { estimate: data }});
+        // Assuming 'data' contains the required estimation details
+        navigate('/results', { state: { estimate: data } });
       })
-      .catch(error => console.log("Error fetching data:", error));
+      .catch((error) => console.log('Error fetching data:', error));
   };
+
 
   return (
     <div >
-      <p className='f3 bg-light-red br2'>
+      <p className='pa2 f3 bg-light-red br2'>
 				{'Please note that this model works for pressures below 10,000 psia. Give it a try!'}
 			</p>
-      <div className='form pa1 ba br4 bw2'>
+      <div className='form ba br4 bw2 ml6'>
         <form onSubmit={handleEstimate}>
           <label className='well-depth db mv2 mr-2 ml-auto'>
             <span className='b mr3 ok'>Well Depth:</span>

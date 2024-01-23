@@ -3,6 +3,7 @@
     display: inline-block;
     flex-wrap: wrap;
     font-weight: bold;
+    text-align: center;
     width: 80%;
 	background:
 	radial-gradient(circle farthest-side at 0% 50%,#fb1 23.5%,rgba(240,166,17,0) 0)21px 30px,
