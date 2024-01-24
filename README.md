@@ -41,7 +41,7 @@ This Application requires:
 **_Flask==3.0.0_**<br>
 **_React-Vite_**<br>
 
-See `[Requirements](./requirement.txt)` for details.
+See [Requirements](./server/requirements.txt) for details.
 
 ## <h2>Usage</h2>:
 
@@ -60,11 +60,24 @@ To use this application locally, follow the steps below:<br>
 9.  visit `htpp://localhost:5173`
 
 <p><h2>Application and usage Overview</h2></p>
-To be updated soon!
+
+<div>
+  <div><p>Login Page</p>
+    <p><img src="./Assets/login.png"/></p>
+  </div>
+  <div><p>Home Page</p>
+    <p><img src="./Assets/homepage.png"/></p>
+  </div>
+  <div><p>Resutls Page</p>
+    <p><img src="./Assets/resultspage.png"/></p>
+  </div>
+  
+
+</div>
 
 ## Files :pencil:
 
-| File | Description |
+| Property | Description |
 |------|-------------|
 | [server](./server) | Directory |
 | [client](./client) | Directory |
