@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Particles from 'react-tsparticles';
 import { EstimateSbhp } from './Pages/EstimationPages/EstimateSbhp';
 import { Results } from './Pages/EstimationPages/Results';
 import { Login } from './Pages/LoginUser/Login';
 import { Register } from './Pages/RegisterUser/Register';
 import { Navigation } from './Components/Navigation';
+import { ParticleBg } from './Components/Particle';
+import './App.css';
 
 const initialState = {
   user: {
@@ -42,7 +43,9 @@ const App = () => {
   const { route, isloggedIn } = state;
 
   return (
+    
     <div className="App">
+      <ParticleBg />
       <Router>
         <Navigation isloggedIn={isloggedIn} onRouteChange={onRouteChange} />
         <Routes>

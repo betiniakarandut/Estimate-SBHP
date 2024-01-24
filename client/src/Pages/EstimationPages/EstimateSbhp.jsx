@@ -43,11 +43,11 @@ export const EstimateSbhp = () => {
 
 
   return (
-    <div >
-      <p className='pa2 f3 bg-light-red br2'>
+    <div>
+      <div className='gen pa2 f3 bg-red br4 ml5 mr5 fw-bold'>
 				{'Please note that this model works for pressures below 10,000 psia. Give it a try!'}
-			</p>
-      <div className='form ba br4 bw2 ml6'>
+			</div>
+      <div className='form ba br4 bw2 ml6 mr6 mt1'>
         <form onSubmit={handleEstimate}>
           <label className='well-depth db mv2 mr-2 ml-auto'>
             <span className='b mr3 ok'>Well Depth:</span>

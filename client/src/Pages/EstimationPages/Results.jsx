@@ -31,20 +31,20 @@ export const Results = () => {
       <div className="ki">
         <h2>Calculation Results</h2>
       </div>
-      <div className="pa1 ba br4 bw1">
-        <div className="sbhp ml7 dark-black ma2">
+      <div className="pa1 ba br4 bw1 ml6 mr6">
+        <div className="sbhp ml7 center dark-black ma2">
           {errorMessage ? (
             <p className="error-message">{errorMessage}</p>
           ) : (
             staticBHPResult
           )}
         </div>
-        <div className="div1 ml5 pa1 ba br4 bw2">
+        <div className="div1 center pa1 ml-auto ba br4 bw2">
           <p className="k h2 white">Some Useful Hints:</p>
-          <p className="k h2">Pseudo-critical pressure: {estimate.ppc_natural_gas_systems}</p>
-          <p className="k h2">Pseudo-critical temperature: {estimate.tpc_natural_gas_systems}</p>
-          <p className="k h2">Pseudo-reduced pressure: {estimate.reduced_pressure}</p>
-          <p className="k h2">Pseudo-reduced temperature: {estimate.reduced_temp}</p>
+          <p className="k h3">Pseudo-critical pressure: {estimate.ppc_natural_gas_systems}</p>
+          <p className="k h3">Pseudo-critical temperature: {estimate.tpc_natural_gas_systems}</p>
+          <p className="k h3">Pseudo-reduced pressure: {estimate.reduced_pressure}</p>
+          <p className="k h3">Pseudo-reduced temperature: {estimate.reduced_temp}</p>
         </div>
       </div>
     </div>

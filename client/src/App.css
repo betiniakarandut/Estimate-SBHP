@@ -3,16 +3,11 @@
   text-align: center;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-}
-
-.particles {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.tsparticles {
   z-index: -1;
+  position: fixed;
+  border-radius: 10px;
+  background: #fff;
+  padding: 2em;
+  border: 1px solid #000;
 }
