@@ -12,7 +12,7 @@ export const Navigation = ({ onRouteChange, isloggedIn }) => {
   return (
     <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
       {isloggedIn ? (
-        <p onClick={handleSignOut} className="f3 link dim black grow underline pa3 pointer">
+        <p onClick={handleSignOut} className="f3 link dim black grow underline mr4 pointer">
           Sign Out
         </p>
       ) : (

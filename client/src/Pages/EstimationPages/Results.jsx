@@ -31,7 +31,7 @@ export const Results = () => {
       <div className="ki">
         <h2>Calculation Results</h2>
       </div>
-      <div className="pa1 ba br4 bw1 ml6 mr6">
+      <div className="kii pa1 ba br4 bw4 ml6 mr6 mb4">
         <div className="sbhp ml7 center dark-black ma2">
           {errorMessage ? (
             <p className="error-message">{errorMessage}</p>

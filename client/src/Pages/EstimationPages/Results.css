@@ -22,9 +22,14 @@
 }
 
 .ki {
+    margin-bottom: auto;
     text-align: center;
     font-weight: bolder;
     font-size: large;
+}
+
+.kii {
+    border-color: rgb(255, 0, 85);
 }
 
 .k {
