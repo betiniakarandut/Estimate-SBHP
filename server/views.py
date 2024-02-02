@@ -13,8 +13,9 @@ app = Flask(__name__)
 CORS(app)
 
 app.config.from_object(ApplicationConfig)
+
 bcrypt = Bcrypt(app)
-# server_session = Session(app)
+# Session(app)
 db.init_app(app)
 
 with app.app_context():
@@ -22,28 +23,23 @@ with app.app_context():
 
 @app.route("/api/register", methods=["POST"])
 def register():
-
     data = request.get_json()
-    
     email = data["email"]
     password = data["password"]
 
-    user_exist = db.session.query(User).filter_by(email=email).first() is not None
-
-    if user_exist:
-        return "Error: User already exist", 409
+    # Check for existing user (using PostgreSQL-specific keyword 'EXISTS')
+    user_exists = db.session.query(db.exists().where(User.email == email)).scalar()
     
-    hashed_password =  bcrypt.generate_password_hash(password)
+    if user_exists:
+        return "Error: User already exists", 409
 
+    hashed_password = bcrypt.generate_password_hash(password.encode('utf-8')).decode('utf-8')
     new_user = User(email=email, password=hashed_password)
 
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({
-        "id": new_user.id,
-        "email": new_user.email
-    })
+    return jsonify({"id": new_user.id, "email": new_user.email})
 
 
 @app.route("/api/login", methods=["POST", "GET"])
@@ -60,14 +56,9 @@ def login():
     if not bcrypt.check_password_hash(user.password, password):
         return jsonify({"Error": "Unauthorized"}), 401
     
-    session["user_id"] = user.id
+    session["key"] = user.id
 
-    return jsonify({
-        "id": user.id,
-        "email": user.email
-    })
-
-
+    return jsonify({"id": user.id, "email": user.email})
 
 @app.route("/api/calculate_properties", methods=["POST", "GET"])
 def calculate_properties_api():
@@ -112,3 +103,7 @@ def calculate_properties_api():
         )
     except Exception as e:
         return jsonify({"error": f"Ensure that all input fields are satisfied and are within the given range - {e}"})
+
+
+if __name__=="__main__":
+    app.run(debug=True)
