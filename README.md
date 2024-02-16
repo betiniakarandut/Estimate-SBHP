@@ -47,13 +47,18 @@ See [Requirements](./server/requirements.txt) for details.
 
 Visit the website at https://..................
 
+<p><h2>Set your Environment Variables Below:</h2></p>
+1. export SECRET_KEY=set to any random alphanumeric character or use python built-in `from uuid import uuid4()` to generate any random values<br>
+2. export DB_PASSWORD = Betini2024
+3. export REDIS_URL=redis://localhost:6379
+
 <p><h2>Application and usage on the local machine</h2></p>
 To use this application locally, follow the steps below:<br>
 1.  Open the terminal or command prompt<br>
 2.  git clone `<repo url>`<br>
 3.  cd Estimate-SBHP<br>
 4.  cd server<br>
-5.  python3 views.py (use Postman to check the APIs)<br>
+5.  python3 views.py (use Postman to test the APIs)<br>
 6.  cd client<br>
 7.  npm install<br>
 8.  npm run dev<br>
