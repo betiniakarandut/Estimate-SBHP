@@ -18,6 +18,12 @@ export const Results = () => {
   let staticBHPResult;
 
   try {
+    if (estimate.static_bhp_result !== 200){
+      console.error('Error accessing static_bhp_result:', error);
+      setErrorMessage(
+      'Error 101: The result is not visible. Ensure that the input fields have met all the requirements.'
+      );
+    }
     staticBHPResult = estimate.static_bhp_result;
   } catch (error) {
     console.error('Error accessing static_bhp_result:', error);
@@ -28,10 +34,7 @@ export const Results = () => {
 
   return (
     <div>
-      <div className="ki">
-        <h2>Calculation Results</h2>
-      </div>
-      <div className="kii pa1 ba br4 bw4 ml6 mr6 mb4">
+      <div className="kii pa1 bg-yellow ba br4 bw4 ml6 mr6 mb4">
         <div className="sbhp ml7 center dark-black ma2">
           {errorMessage ? (
             <p className="error-message">{errorMessage}</p>
@@ -40,11 +43,11 @@ export const Results = () => {
           )}
         </div>
         <div className="div1 center pa1 ml-auto ba br4 bw2">
-          <p className="k h2 white">Some Useful Hints:</p>
-          <p className="k h3">Pseudo-critical pressure: {estimate.ppc_natural_gas_systems}</p>
-          <p className="k h3">Pseudo-critical temperature: {estimate.tpc_natural_gas_systems}</p>
-          <p className="k h3">Pseudo-reduced pressure: {estimate.reduced_pressure}</p>
-          <p className="k h3">Pseudo-reduced temperature: {estimate.reduced_temp}</p>
+          <p className="k h2 black">Some Useful Hints:</p>
+          <p className="k h3">Pseudo-critical pressure, Ppc: {estimate.ppc_natural_gas_systems}</p>
+          <p className="k h3">Pseudo-critical temperature, Tpc: {estimate.tpc_natural_gas_systems}</p>
+          <p className="k h3">Pseudo-reduced pressure, Ppr: {estimate.reduced_pressure}</p>
+          <p className="k h3">Pseudo-reduced temperature, Tpr: {estimate.reduced_temp}</p>
         </div>
       </div>
     </div>

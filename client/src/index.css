@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Courier New", Courier, monospace, 'Times New Roman', Times, serif;
-  background: linear-gradient(45deg, red 0%, blue 100%);
+  /* background: linear-gradient(45deg, red 0%, blue 100%); */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

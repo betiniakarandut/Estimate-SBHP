@@ -5,7 +5,7 @@
 
 .tsparticles {
   z-index: -1;
-  position: fixed;
+  position: absolute;
   border-radius: 10px;
   background: #fff;
   padding: 2em;
