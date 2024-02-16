@@ -18,12 +18,7 @@ export const Results = () => {
   let staticBHPResult;
 
   try {
-    if (estimate.static_bhp_result !== 200){
-      console.error('Error accessing static_bhp_result:', error);
-      setErrorMessage(
-      'Error 101: The result is not visible. Ensure that the input fields have met all the requirements.'
-      );
-    }
+
     staticBHPResult = estimate.static_bhp_result;
   } catch (error) {
     console.error('Error accessing static_bhp_result:', error);
