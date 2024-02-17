@@ -49,7 +49,7 @@ Visit the website at https://..................
 
 <p><h2>Set your Environment Variables Below:</h2></p>
 1. export SECRET_KEY=set to any random alphanumeric character or use python built-in `from uuid import uuid4()` to generate any random values<br>
-2. export DB_PASSWORD = Betini2024
+2. export DB_PASSWORD = Betini2024<br>
 3. export REDIS_URL=redis://localhost:6379
 
 <p><h2>Application and usage on the local machine</h2></p>
