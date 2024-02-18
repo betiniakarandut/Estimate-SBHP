@@ -18,3 +18,4 @@ redis==5.0.1
 SQLAlchemy==2.0.23
 Werkzeug==3.0.1
 psycopg2-binary
+gunicorn
