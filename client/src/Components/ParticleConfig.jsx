@@ -14,7 +14,7 @@ const particleConfig = {
         composite: "destination-out",
         cover: {
         color: {
-            value: "#fff"
+            value: "#000000"
         },
         opacity: 1
         },

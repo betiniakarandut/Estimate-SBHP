@@ -14,7 +14,7 @@ export const Register = ({ loadUser, onRouteChange }) => {
   };
 
   const onSubmitRegister = () => {
-    fetch('http://localhost:5000/api/register', {
+    fetch('https://sbhp-estimation.onrender.com/api/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userInput),

@@ -14,7 +14,7 @@ export const Login = ({ loadUser, onRouteChange }) => {
   };
 
   const onSubmitLogIn = () => {
-    fetch('http://localhost:5000/api/login', {
+    fetch('https://sbhp-estimation.onrender.com/api/login', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userInput),

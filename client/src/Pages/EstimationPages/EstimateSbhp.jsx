@@ -19,7 +19,7 @@ export const EstimateSbhp = () => {
   const handleEstimate = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5000/api/calculate_properties', {
+    fetch('https://sbhp-estimation.onrender.com/api/calculate_properties', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
