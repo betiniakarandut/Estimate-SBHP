@@ -15,7 +15,7 @@ CORS(app)
 app.config.from_object(ApplicationConfig)
 
 bcrypt = Bcrypt(app)
-# Session(app)
+# serverside_session = Session(app)
 db.init_app(app)
 
 with app.app_context():
@@ -103,7 +103,3 @@ def calculate_properties_api():
         )
     except Exception as e:
         return jsonify({"error": f"Ensure that all input fields are satisfied and are within the given range - {e}"})
-
-
-if __name__=="__main__":
-    app.run(debug=True)

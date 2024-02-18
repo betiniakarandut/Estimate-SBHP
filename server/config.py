@@ -8,7 +8,7 @@ class ApplicationConfig:
 
     SQLALCHEMY_TRACK_MODIFICATION = False
     SQLALCHEMY_ECHO = True
-    SQLALCHEMY_DATABASE_URI = f"postgresql://postgres:{db_password}@localhost:5432/SBHP_db"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     
     SESSION_TYPE = 'redis'
     SESSION_PERMANENT = False
