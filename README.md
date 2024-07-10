@@ -6,9 +6,9 @@
 # 📖 Estimate-SBHP <a name="about-project"></a>
 <div>
     This is my Final Year undergraduate project in partial fulfilment for the award of Bachelor of Engineering Degree in Chemical Engineering.
-    During one of our lectures in the first semester Fourth Year, I learnt Natural Gas Engineering. Of the many methods of predicting/estimating static bottom hole pressure, I discovered that Sukkar and Cornell is widely used both for vertical and inclined wells especially for pressures below 10,000psia. 
-    This model is made to relief reservoir engineers(or student engineers) who which to predict SBHP with the Sukkar and Cornell approach. This model has 98% accuracy as compared to the measured SBHP(with gauge). It is made to extrapolate and interpolate values to obtain best pseudo reduced wellhead pressure value, and carry out all the possible iterations involved in the calculation automatically.
-    It is a light weight application built with Python3-Flask(backend) and React-Vite(frontend).
+    In one of our lectures in Natural Gas Engineering in first semester Fourth Year, I discovered that of the many approach to estimate static bottom hole pressure, Sukkar and Cornell Integral is widely used both for vertical and inclined wells especially for pressures below 10,000 pound/square inch absolute(psia). 
+    This model is made to relief reservoir engineers(or student engineers) who which to predict SBHP with the Sukkar and Cornell approach. <br>The model has 98% accuracy as compared to the measured SBHP(with gauge). It is made to extrapolate and interpolate values to obtain best pseudo reduced wellhead pressure value, and carry out all the possible iterations involved in the calculation automatically.
+    <br>It is a light weight application built with Python3-Flask(backend) and React-Vite(frontend).
     
 </div>
 <br>
